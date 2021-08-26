@@ -5,7 +5,8 @@ function Router() {
   return (
     <Switch>
       <Route exact path="/">
-        <pages.MainPage />
+        <pages.WelcomePage />
+        {/* <pages.MainPage /> */}
       </Route>
       <Route exact path="/remittance" />
       <Route exact path="/stock" />
