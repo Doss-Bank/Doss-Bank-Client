@@ -2,8 +2,18 @@ import { Helmet } from "react-helmet";
 import { WelcomePageContainer } from "./pageStyle";
 import DossWelcomeVideo from "assets/video/DOSS_welcome.mp4";
 import Modal from "components/Common/Modal";
+import { useState } from "react";
 
 function WelcomePage() {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     <>
       <WelcomePageContainer>
@@ -13,13 +23,24 @@ function WelcomePage() {
             금융의 모든 것,
             <br /> 도스에서 쉽고 간편하게
           </h1>
-          <button className="welcome-meta-button">로그인</button>
+          <button className="welcome-meta-button" onClick={openModal}>
+            로그인
+          </button>
         </div>
         <video autoPlay loop muted>
           <source src={DossWelcomeVideo} type="video/mp4" />
         </video>
       </WelcomePageContainer>
-      <Modal visible={true}>Hello</Modal>
+      {modalVisible && (
+        <Modal
+          visible={modalVisible}
+          closable
+          maskClosable
+          handleClose={closeModal}
+        >
+          Hello
+        </Modal>
+      )}
     </>
   );
 }
