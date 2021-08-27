@@ -2,17 +2,10 @@ import { Helmet } from "react-helmet";
 import { WelcomePageContainer } from "./pageStyle";
 import DossWelcomeVideo from "assets/video/DOSS_welcome.mp4";
 import Modal from "components/Common/Modal";
-import { useState } from "react";
+import useToggle from "hooks/useToggle";
 
 function WelcomePage() {
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const openModal = () => {
-    setModalVisible(true);
-  };
-  const closeModal = () => {
-    setModalVisible(false);
-  };
+  const [modalVisible, , openModal, closeModal] = useToggle(false);
 
   return (
     <>

@@ -1,4 +1,5 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
+import Portal from "../Portal";
 import { ModalInner, ModalOverlay, ModalWrapper } from "./ModalStyle";
 
 interface InterfaceModalProps {
@@ -29,8 +30,17 @@ const Modal: FC<InterfaceModalProps> = ({
     }
   };
 
+  useEffect(() => {
+    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = `position: ""; top: "";`;
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    };
+  }, []);
+
   return (
-    <>
+    <Portal elementId="modal-root">
       <ModalOverlay visible={visible} />
       <ModalWrapper
         className={className}
@@ -47,7 +57,7 @@ const Modal: FC<InterfaceModalProps> = ({
           {children}
         </ModalInner>
       </ModalWrapper>
-    </>
+    </Portal>
   );
 };
 

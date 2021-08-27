@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 interface InterfaceStyledModal {
-  visible: boolean;
+  visible?: boolean;
 }
 
 export const ModalWrapper = styled.div<InterfaceStyledModal>`
@@ -27,6 +27,7 @@ export const ModalOverlay = styled.div<InterfaceStyledModal>`
   right: 0;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 999;
+  transition: ease-in-out 0.2s;
 `;
 
 export const ModalInner = styled.div`
