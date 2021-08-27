@@ -1,3 +1,10 @@
 # DOSS
 
-대구소프트웨어 마이스터고등학교 프실과제
+## Skill Stacks
+
+- React.js
+- Emotion.js
+- React-router-dom
+- Loadable-Component
+
+**special thanks TypeScript**
