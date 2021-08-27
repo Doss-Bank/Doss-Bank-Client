@@ -6,7 +6,7 @@ export const WelcomePageContainer = styled.main`
   position: relative;
   overflow: hidden;
   .welcome-meta {
-    z-index: 9999;
+    z-index: 1;
     position: fixed;
     top: 20%;
     left: 15%;
