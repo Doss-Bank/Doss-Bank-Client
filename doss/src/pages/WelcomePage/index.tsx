@@ -25,9 +25,11 @@ function WelcomePage() {
           <source src={DossWelcomeVideo} type="video/mp4" />
         </video>
       </WelcomePageContainer>
+
       <Modal
         visible={ModalVisible}
         // closable
+        width="500px"
         maskClosable
         handleClose={closeModal}
       >

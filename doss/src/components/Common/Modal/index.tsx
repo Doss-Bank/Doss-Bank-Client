@@ -9,6 +9,7 @@ interface InterfaceModalProps {
   closable?: boolean;
   maskClosable?: boolean;
   closeComment?: string;
+  width?: string;
 }
 
 const Modal: FC<InterfaceModalProps> = ({
@@ -19,6 +20,7 @@ const Modal: FC<InterfaceModalProps> = ({
   handleClose,
   maskClosable,
   closeComment,
+  width,
 }) => {
   const onMaskClick = (e: React.MouseEvent<HTMLElement>) => {
     if (e.target === e.currentTarget) {
@@ -50,7 +52,7 @@ const Modal: FC<InterfaceModalProps> = ({
         visible={visible}
         onClick={maskClosable ? onMaskClick : undefined}
       >
-        <ModalInner>
+        <ModalInner width={width}>
           <div className="modal-content">{children}</div>
           {closable && (
             <footer className="modal-utils">

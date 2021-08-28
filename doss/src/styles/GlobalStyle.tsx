@@ -21,6 +21,26 @@ const GlobalStyle = () => {
         html {
           height: -webkit-fill-available;
         }
+
+        a {
+          border-radius: 5px;
+          color: #3182f6;
+          padding: 8px 5px;
+          cursor: pointer;
+          font-size: inherit;
+          white-space: nowrap;
+          display: inline-flex;
+          -webkit-appearance: none;
+          transition: background-color 0.2s ease;
+          text-decoration: none;
+          &:hover {
+            background-color: #ddebfc;
+          }
+          &::after {
+            content: " >";
+            margin-left: 10px;
+          }
+        }
       `}
     />
   );

@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const StyledInputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem 0;
+  margin: 0 0 1rem 0;
   .input_label {
     line-height: 2rem;
     color: rgb(78, 89, 104);

@@ -4,6 +4,10 @@ interface InterfaceStyledModal {
   visible?: boolean;
 }
 
+interface ModalInnerInterfaces {
+  width?: string;
+}
+
 export const ModalWrapper = styled.div<InterfaceStyledModal>`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? "block" : "none")};
@@ -30,15 +34,17 @@ export const ModalOverlay = styled.div<InterfaceStyledModal>`
   transition: ease-in-out 0.2s;
 `;
 
-export const ModalInner = styled.div`
+export const ModalInner = styled.div<ModalInnerInterfaces>`
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: #fff;
   border-radius: 10px;
-  width: 360px;
-  max-width: 480px;
+  width: ${(props) => props.width || "360px"};
+  @media (max-width: 768px) {
+    width: 80%;
+  }
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
