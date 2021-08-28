@@ -3,7 +3,6 @@ import { WelcomePageContainer } from "./pageStyle";
 import DossWelcomeVideo from "assets/video/DOSS_welcome.mp4";
 import Modal from "components/Common/Modal";
 import useToggle from "hooks/useToggle";
-import { useState } from "react";
 import LoginForm from "components/Auth/LoginForm";
 
 function WelcomePage() {
@@ -28,7 +27,7 @@ function WelcomePage() {
       </WelcomePageContainer>
       <Modal
         visible={ModalVisible}
-        closable
+        // closable
         maskClosable
         handleClose={closeModal}
       >

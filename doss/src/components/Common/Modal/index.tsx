@@ -52,13 +52,13 @@ const Modal: FC<InterfaceModalProps> = ({
       >
         <ModalInner>
           <div className="modal-content">{children}</div>
-          <footer className="modal-utils">
-            {closable && (
+          {closable && (
+            <footer className="modal-utils">
               <button className="util-button close" onClick={close}>
                 {closeComment}
               </button>
-            )}
-          </footer>
+            </footer>
+          )}
         </ModalInner>
       </ModalWrapper>
     </Portal>
