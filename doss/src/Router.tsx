@@ -8,6 +8,9 @@ function Router() {
         <pages.WelcomePage />
         {/* <pages.MainPage /> */}
       </Route>
+      <Route exact path="/join">
+        <pages.JoinPage />
+      </Route>
       <Route exact path="/remittance" />
       <Route exact path="/stock" />
       <Route exact path="/profile" />

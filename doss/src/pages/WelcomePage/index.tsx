@@ -11,7 +11,7 @@ function WelcomePage() {
   return (
     <>
       <WelcomePageContainer>
-        <Helmet title="Doss - 개발이 즐거워지는 순간" />
+        <Helmet title="도스 - 개발이 즐거워지는 순간" />
         <div className="welcome-meta">
           <h1 className="welcome-meta-title">
             금융의 모든 것,

@@ -10,4 +10,5 @@ export const StyledButton = styled.button`
   border-radius: 10px;
   color: #f9fafb;
   font-weight: bold;
+  cursor: pointer;
 `;

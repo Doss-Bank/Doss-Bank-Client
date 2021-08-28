@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 function NotFoundPage() {
   return (
     <>
-      <Helmet title="Doss | 404" />
+      <Helmet title="도스 | 404" />
       404
     </>
   );

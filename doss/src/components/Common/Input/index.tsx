@@ -6,7 +6,7 @@ interface InputInterfaces {
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
-  inputId: string;
+  inputId?: string;
 }
 
 const Input: VFC<InputInterfaces> = ({
