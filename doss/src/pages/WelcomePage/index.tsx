@@ -3,9 +3,11 @@ import { WelcomePageContainer } from "./pageStyle";
 import DossWelcomeVideo from "assets/video/DOSS_welcome.mp4";
 import Modal from "components/Common/Modal";
 import useToggle from "hooks/useToggle";
+import { useState } from "react";
+import LoginForm from "components/Auth/LoginForm";
 
 function WelcomePage() {
-  const [modalVisible, , openModal, closeModal] = useToggle(false);
+  const [ModalVisible, , openModal, closeModal] = useToggle(false);
 
   return (
     <>
@@ -24,16 +26,18 @@ function WelcomePage() {
           <source src={DossWelcomeVideo} type="video/mp4" />
         </video>
       </WelcomePageContainer>
-      {modalVisible && (
-        <Modal
-          visible={modalVisible}
-          closable
-          maskClosable
-          handleClose={closeModal}
-        >
-          Hello
-        </Modal>
-      )}
+      <Modal
+        visible={ModalVisible}
+        closable
+        maskClosable
+        handleClose={closeModal}
+      >
+        <LoginForm
+          onSubmit={() => {
+            console.log("login submit");
+          }}
+        />
+      </Modal>
     </>
   );
 }

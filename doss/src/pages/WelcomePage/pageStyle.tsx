@@ -42,6 +42,9 @@ export const WelcomePageContainer = styled.main`
       justify-content: center;
       cursor: pointer;
       user-select: none;
+      &:hover {
+        filter: brightness(80%);
+      }
     }
   }
   video {

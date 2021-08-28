@@ -8,6 +8,7 @@ interface InterfaceModalProps {
   handleClose?: (e: React.MouseEvent<HTMLElement>) => void;
   closable?: boolean;
   maskClosable?: boolean;
+  closeComment?: string;
 }
 
 const Modal: FC<InterfaceModalProps> = ({
@@ -17,6 +18,7 @@ const Modal: FC<InterfaceModalProps> = ({
   closable,
   handleClose,
   maskClosable,
+  closeComment,
 }) => {
   const onMaskClick = (e: React.MouseEvent<HTMLElement>) => {
     if (e.target === e.currentTarget) {
@@ -49,16 +51,22 @@ const Modal: FC<InterfaceModalProps> = ({
         onClick={maskClosable ? onMaskClick : undefined}
       >
         <ModalInner>
-          {closable && (
-            <button className="modal-close" onClick={close}>
-              X
-            </button>
-          )}
-          {children}
+          <div className="modal-content">{children}</div>
+          <footer className="modal-utils">
+            {closable && (
+              <button className="util-button close" onClick={close}>
+                {closeComment}
+              </button>
+            )}
+          </footer>
         </ModalInner>
       </ModalWrapper>
     </Portal>
   );
+};
+
+Modal.defaultProps = {
+  closeComment: "닫기",
 };
 
 export default Modal;

@@ -31,6 +31,7 @@ export const ModalOverlay = styled.div<InterfaceStyledModal>`
 `;
 
 export const ModalInner = styled.div`
+  overflow: hidden;
   box-sizing: border-box;
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
@@ -41,5 +42,25 @@ export const ModalInner = styled.div`
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
-  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  .modal-content {
+    padding: 1.5rem;
+  }
+  .modal-utils {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem 0;
+    .util-button {
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      width: 80px;
+      padding: 0.5rem 0;
+    }
+    .close {
+      background: #dde9fc;
+      color: #4592fc;
+    }
+  }
 `;
