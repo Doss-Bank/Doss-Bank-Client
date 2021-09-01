@@ -13,9 +13,15 @@ function Router() {
       <Route exact path="/join">
         <pages.JoinPage />
       </Route>
-      <Route exact path="/remittance" />
-      <Route exact path="/stock" />
-      <Route exact path="/profile" />
+      <Route exact path="/remittance">
+        <pages.RemittancePage />
+      </Route>
+      <Route exact path="/stock">
+        <pages.StockPage />
+      </Route>
+      <Route exact path="/profile">
+        <pages.ProfilePage />
+      </Route>
       <Route path="*">
         <pages.NotFoundPage />
       </Route>
