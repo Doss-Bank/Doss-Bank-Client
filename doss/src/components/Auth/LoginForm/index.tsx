@@ -1,17 +1,23 @@
-import { VFC } from "react";
-import { Link } from "react-router-dom";
+import { useCallback, useEffect, VFC } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { loginRecoilState } from "recoils/Auth/AuthState";
 import Button from "components/Common/Button";
 import Caption from "components/Common/Caption";
 import Form from "components/Common/Form";
 import Input from "components/Common/Input";
 
-interface LoginFormInterfaces {
-  onSubmit: () => void;
-}
+const LoginForm: VFC = () => {
+  const { push } = useHistory();
+  const [loginState, setLoginState] = useRecoilState(loginRecoilState);
 
-const LoginForm: VFC<LoginFormInterfaces> = ({ onSubmit }) => {
+  const handleSubmit = useCallback(() => {
+    console.log(loginState);
+    setLoginState({ loginDone: true });
+  }, [loginState, setLoginState]);
+
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Input
         inputTitle="아이디"
         placeholder="아이디를 입력해주세요."

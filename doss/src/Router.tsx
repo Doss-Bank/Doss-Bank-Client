@@ -5,8 +5,10 @@ function Router() {
   return (
     <Switch>
       <Route exact path="/">
+        <pages.MainPage />
+      </Route>
+      <Route exact path="/welcome">
         <pages.WelcomePage />
-        {/* <pages.MainPage /> */}
       </Route>
       <Route exact path="/join">
         <pages.JoinPage />

@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 import { JoinTypes, LoginTypes } from "./AuthInterface";
 
-export const loginState = atom<LoginTypes>({
+export const loginRecoilState = atom<LoginTypes>({
   key: "Auth/LoginState",
   default: { loginDone: false },
 });

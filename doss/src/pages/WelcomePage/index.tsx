@@ -4,10 +4,23 @@ import DossWelcomeVideo from "assets/video/DOSS_welcome.mp4";
 import Modal from "components/Common/Modal";
 import useToggle from "hooks/useToggle";
 import LoginForm from "components/Auth/LoginForm";
+import { useRecoilState } from "recoil";
+import { loginRecoilState } from "recoils/Auth/AuthState";
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 function WelcomePage() {
+  const { push } = useHistory();
+
+  const [loginState, setLoginState] = useRecoilState(loginRecoilState);
   const [ModalVisible, , openModal, closeModal] = useToggle(false);
 
+  useEffect(() => {
+    if (loginState.loginDone) {
+      push("/");
+    }
+  }, [loginState, push]);
+  console.log(loginState.loginDone);
   return (
     <>
       <WelcomePageContainer>
@@ -21,7 +34,7 @@ function WelcomePage() {
             로그인
           </button>
         </div>
-        <video autoPlay loop muted>
+        <video muted={true} autoPlay loop>
           <source src={DossWelcomeVideo} type="video/mp4" />
         </video>
       </WelcomePageContainer>
@@ -33,11 +46,7 @@ function WelcomePage() {
         maskClosable
         handleClose={closeModal}
       >
-        <LoginForm
-          onSubmit={() => {
-            console.log("login submit");
-          }}
-        />
+        <LoginForm />
       </Modal>
     </>
   );
