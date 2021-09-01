@@ -2,13 +2,19 @@ import Button from "components/Common/Button";
 import Form from "components/Common/Form";
 import Input from "components/Common/Input";
 import useInput from "hooks/useInput";
-// import PhoneInput from "react-phone-number-input";
 import Caption from "components/Common/Caption";
 import { StyledJoinSection } from "./JoinFormStyle";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import joinValidator from "utils/joinValidator";
+import { joinRecoilState } from "recoils/Auth/AuthState";
+import { useRecoilState } from "recoil";
+import { useHistory } from "react-router-dom";
 
 const JoinForm = () => {
+  const { push } = useHistory();
+
+  const [joinState, setJoinState] = useRecoilState(joinRecoilState);
+
   //아이디,비번,닉네임,폰번호,생일
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useInput("");
@@ -26,7 +32,7 @@ const JoinForm = () => {
     [setPhoneNumber]
   );
 
-  const [hasValidateError, setHasValidateError] = useState<string | null>(null);
+  const [hasValidateError, setHasValidateError] = useState<string | null>("");
 
   const handleJoinSubmit = useCallback(() => {
     const joinData = {
@@ -40,6 +46,18 @@ const JoinForm = () => {
     const errorMessage = joinValidator(joinData);
     setHasValidateError(errorMessage);
   }, [id, password, checkPassword, nickname, phoneNumber]);
+
+  useEffect(() => {
+    if (hasValidateError === null) {
+      setJoinState({ joinDone: true });
+    }
+  }, [hasValidateError, setJoinState]);
+
+  useEffect(() => {
+    if (joinState.joinDone) {
+      push("/");
+    }
+  }, [joinState, push]);
 
   return (
     <Form onSubmit={handleJoinSubmit}>

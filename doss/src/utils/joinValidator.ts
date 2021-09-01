@@ -21,7 +21,7 @@ export default function joinValidator(joinData: JoinInterfaces) {
   );
   const isSamePassword = joinData.password === joinData.checkPassword;
 
-  console.log(isValidId, isValidNickname, isValidPhoneNumber, isSamePassword);
+  // console.log(isValidId, isValidNickname, isValidPhoneNumber, isSamePassword);
 
   if (!isValidId) {
     return "아이디는 4 ~ 10자 사이여야 합니다.";
@@ -34,6 +34,6 @@ export default function joinValidator(joinData: JoinInterfaces) {
   } else if (!isValidPhoneNumber) {
     return "전화번호 형식이 잘못되었습니다.";
   } else {
-    return "";
+    return null;
   }
 }
