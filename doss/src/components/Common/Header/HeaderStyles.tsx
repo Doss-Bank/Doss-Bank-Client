@@ -12,6 +12,8 @@ export const HeaderContainer = styled.header`
     margin: 0 auto;
     max-width: 1200px;
     .logo {
+      cursor: pointer;
+      user-select: none;
       font-size: 2rem;
       color: rgb(0, 100, 255);
       font-weight: bold;

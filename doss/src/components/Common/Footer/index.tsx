@@ -14,7 +14,7 @@ const Footer = () => {
             <AiFillHome size={40} />
           </li>
         </NavLink>
-        <NavLink to="/send" activeClassName="active_tab">
+        <NavLink to="/remittance" activeClassName="active_tab">
           <li className="menu">
             <h1>송금</h1>
             <BsFillLightningFill size={40} />
@@ -26,7 +26,7 @@ const Footer = () => {
             <AiOutlineStock size={40} />
           </li>
         </NavLink>
-        <NavLink to="/my" activeClassName="active_tab">
+        <NavLink to="/profile" activeClassName="active_tab">
           <li className="menu">
             <h1>내 정보</h1>
             <CgProfile size={40} />

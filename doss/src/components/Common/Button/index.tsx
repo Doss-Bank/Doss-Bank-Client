@@ -4,10 +4,15 @@ import { StyledButton } from "./ButtonStyle";
 interface ButtonInterfaces {
   children: string;
   onClick?: () => void;
+  className?: string;
 }
 
-const Button: VFC<ButtonInterfaces> = ({ children, onClick }) => {
-  return <StyledButton onClick={onClick}>{children}</StyledButton>;
+const Button: VFC<ButtonInterfaces> = ({ children, onClick, className }) => {
+  return (
+    <StyledButton className={className} onClick={onClick}>
+      {children}
+    </StyledButton>
+  );
 };
 
 Button.defaultProps = {

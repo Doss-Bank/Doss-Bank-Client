@@ -11,4 +11,8 @@ export const StyledButton = styled.button`
   color: #f9fafb;
   font-weight: bold;
   cursor: pointer;
+  transition: ease-in-out 0.2s;
+  &:hover {
+    filter: brightness(90%);
+  }
 `;
