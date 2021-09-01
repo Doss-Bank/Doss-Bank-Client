@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const ProfileCardContainer = styled.div`
+  padding: 1rem;
   .profile_meta {
     display: flex;
     align-items: center;
@@ -11,6 +12,7 @@ export const ProfileCardContainer = styled.div`
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
+    user-select: none;
   }
   .name {
     font-size: 24px;

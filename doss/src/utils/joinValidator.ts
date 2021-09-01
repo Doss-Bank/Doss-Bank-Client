@@ -4,6 +4,7 @@ interface JoinInterfaces {
   checkPassword: string;
   nickname: string;
   phoneNumber: string;
+  birth: string;
 }
 
 export default function joinValidator(joinData: JoinInterfaces) {
@@ -20,6 +21,7 @@ export default function joinValidator(joinData: JoinInterfaces) {
     joinData.nickname
   );
   const isSamePassword = joinData.password === joinData.checkPassword;
+  const isValidBirth = joinData.birth.length > 0;
 
   // console.log(isValidId, isValidNickname, isValidPhoneNumber, isSamePassword);
 
@@ -33,6 +35,8 @@ export default function joinValidator(joinData: JoinInterfaces) {
     return "닉네임은 1 ~ 10자 사이여야 합니다.";
   } else if (!isValidPhoneNumber) {
     return "전화번호 형식이 잘못되었습니다.";
+  } else if (!isValidBirth) {
+    return "생일을 입력해주세요.";
   } else {
     return null;
   }

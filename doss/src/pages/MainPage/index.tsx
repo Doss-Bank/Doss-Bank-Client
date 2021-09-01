@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import PageLayout from "components/Layout/PageLayout";
 import Card from "components/Common/Card";
 import ProfileCard from "components/Main/ProfileCard";
+import AccountCard from "components/Main/AccountCard";
 
 function MainPage() {
   const { push } = useHistory();
@@ -23,7 +24,7 @@ function MainPage() {
       <Helmet title="도스 - 개발이 즐거워지는 순간" />
       <PageLayout>
         <ProfileCard />
-        <Card>계좌 리스트</Card>
+        <AccountCard />
       </PageLayout>
     </>
   );

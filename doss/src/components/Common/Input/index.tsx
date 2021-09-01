@@ -7,7 +7,7 @@ interface InputInterfaces {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
   inputId?: string;
-  type?: "number" | "password" | "text";
+  type?: "number" | "password" | "text" | "date";
   pattern?: string;
 }
 

@@ -21,6 +21,8 @@ const JoinForm = () => {
   const [checkPassword, onChangeCheckPassword] = useInput("");
   const [nickname, onChangeNickname] = useInput("");
   const [phoneNumber, _, setPhoneNumber] = useInput("");
+  const [birth, onChangeBirth] = useInput("");
+
   const onChangePhoneNumber = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const re = /^[0-9\b]+$/;
@@ -41,11 +43,12 @@ const JoinForm = () => {
       checkPassword,
       nickname,
       phoneNumber,
+      birth,
     };
 
     const errorMessage = joinValidator(joinData);
     setHasValidateError(errorMessage);
-  }, [id, password, checkPassword, nickname, phoneNumber]);
+  }, [id, password, checkPassword, nickname, phoneNumber, birth]);
 
   useEffect(() => {
     if (hasValidateError === null) {
@@ -104,6 +107,16 @@ const JoinForm = () => {
           inputId="5"
           value={phoneNumber}
           onChange={onChangePhoneNumber}
+        />
+      </StyledJoinSection>
+      <StyledJoinSection>
+        <Input
+          inputTitle="생일"
+          placeholder="생일을 입력해주세요."
+          inputId="6"
+          value={birth}
+          onChange={onChangeBirth}
+          type="date"
         />
       </StyledJoinSection>
       {hasValidateError && (

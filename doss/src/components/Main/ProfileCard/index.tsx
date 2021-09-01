@@ -8,7 +8,12 @@ const ProfileCard = () => {
     <Card>
       <ProfileCardContainer>
         <div className="profile_meta">
-          <img src={Profile} alt="프로필 이미지" className="profile" />
+          <img
+            src={Profile}
+            alt="프로필 이미지"
+            className="profile"
+            draggable={false}
+          />
           <h2 className="name">김토스</h2>
           <Button className="remittance">송금</Button>
         </div>

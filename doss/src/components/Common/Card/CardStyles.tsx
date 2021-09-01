@@ -6,7 +6,8 @@ interface CardStyleProps {
 
 export const CardContainer = styled.div<CardStyleProps>`
   border-radius: 15px;
-  padding: 1rem;
+  /* padding: 1rem; */
+  overflow: hidden;
   margin: 1rem 0 2rem 0;
   background-color: ${(props) =>
     props.themeMode === "LIGHT" ? "white" : "#191f28"};
