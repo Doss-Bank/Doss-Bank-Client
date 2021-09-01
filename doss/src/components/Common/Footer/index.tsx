@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AiFillHome, AiOutlineStock } from "react-icons/ai";
 import { BsFillLightningFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
@@ -8,30 +8,30 @@ const Footer = () => {
   return (
     <FooterContainer>
       <ul className="menus">
-        <Link to="">
+        <NavLink to="/" activeClassName="active_tab">
           <li className="menu">
             <h1>홈</h1>
             <AiFillHome size={40} />
           </li>
-        </Link>
-        <Link to="">
+        </NavLink>
+        <NavLink to="/send" activeClassName="active_tab">
           <li className="menu">
             <h1>송금</h1>
             <BsFillLightningFill size={40} />
           </li>
-        </Link>
-        <Link to="">
+        </NavLink>
+        <NavLink to="/stock" activeClassName="active_tab">
           <li className="menu">
             <h1>주식</h1>
             <AiOutlineStock size={40} />
           </li>
-        </Link>
-        <Link to="">
+        </NavLink>
+        <NavLink to="/my" activeClassName="active_tab">
           <li className="menu">
             <h1>내 정보</h1>
             <CgProfile size={40} />
           </li>
-        </Link>
+        </NavLink>
       </ul>
     </FooterContainer>
   );
