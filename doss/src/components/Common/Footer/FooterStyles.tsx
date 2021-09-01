@@ -9,7 +9,15 @@ export const FooterContainer = styled.footer`
   background-color: white;
   z-index: 60;
   .menus {
+    display: flex;
+    justify-content: space-evenly;
     max-width: 1200px;
     margin: 0 auto;
+    .menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
   }
 `;

@@ -36,10 +36,6 @@ const GlobalStyle = () => {
           &:hover {
             background-color: #ddebfc;
           }
-          &::after {
-            content: " >";
-            margin-left: 10px;
-          }
         }
       `}
     />
