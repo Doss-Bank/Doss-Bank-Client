@@ -1,40 +1,40 @@
-import { VFC } from "react";
-import { StyledInputContainer } from "./InputStyle";
+import { InputHTMLAttributes, Ref } from "react";
+import Button from "../Button";
+import { InputContainer, StyledInput } from "./InputStyles";
 
-interface InputInterfaces {
-  inputTitle?: string;
-  value?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+interface InputProps {
+  type?: string;
   placeholder?: string;
-  inputId?: string;
-  type?: "number" | "password" | "text" | "date";
-  pattern?: string;
+  value?: string;
+  onChange?: (e: any) => void;
+  overlabHandler?: () => void;
+  maxLength?: number;
+  className?: string;
+  inputRef?: any;
 }
 
-const Input: VFC<InputInterfaces> = ({
-  inputTitle,
+const Input: React.VFC<InputProps> = ({
+  type,
+  placeholder,
   value,
   onChange,
-  placeholder,
-  inputId,
-  type,
-  pattern,
+  overlabHandler,
+  maxLength,
+  className,
+  inputRef,
 }) => {
   return (
-    <StyledInputContainer>
-      <label htmlFor={`__input__${inputId}`} className="input_label">
-        {inputTitle}
-      </label>
-      <input
+    <InputContainer className={className}>
+      <StyledInput
+        ref={inputRef}
         type={type}
+        maxLength={maxLength}
+        placeholder={placeholder}
         value={value}
         onChange={onChange}
-        placeholder={placeholder}
-        id={`__input__${inputId}`}
-        className="input"
-        pattern={pattern}
       />
-    </StyledInputContainer>
+      {overlabHandler && <Button onClick={overlabHandler}>중복확인</Button>}
+    </InputContainer>
   );
 };
 

@@ -1,10 +1,9 @@
 import { Helmet } from "react-helmet";
-import { joinRecoilState, loginRecoilState } from "recoils/Auth/AuthState";
+import { loginRecoilState } from "recoils/Auth/AuthState";
 import { useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { useEffect } from "react";
 import PageLayout from "components/Layout/PageLayout";
-import Card from "components/Common/Card";
 import ProfileCard from "components/Main/ProfileCard";
 import AccountCard from "components/Main/AccountCard";
 

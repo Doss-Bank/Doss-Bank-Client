@@ -1,22 +1,34 @@
-import { FC, useCallback } from "react";
+import React, { useCallback } from "react";
 import { FormEvent } from "react";
+import Button from "../Button";
+import { FormContainer } from "./formStyles";
 
-interface FormInterfaces {
+interface FormPropsType {
   onSubmit?: () => void;
+  hasSubmit?: boolean;
+  submitText?: string;
 }
 
-const Form: FC<FormInterfaces> = ({ onSubmit, children }) => {
+const Form: React.FC<FormPropsType> = ({ children, ...props }) => {
   const handleSubmit = useCallback(
     (e: FormEvent) => {
       e.preventDefault();
-      if (onSubmit) {
-        onSubmit();
-      }
+      console.log("a");
+      props.onSubmit
+        ? props.onSubmit()
+        : console.error("Unhandled submit function");
     },
-    [onSubmit]
+    [props]
   );
 
-  return <form onSubmit={handleSubmit}>{children}</form>;
+  return (
+    <FormContainer onSubmit={handleSubmit}>
+      {children}
+      {props.hasSubmit && props.submitText && (
+        <Button>{props.submitText}</Button>
+      )}
+    </FormContainer>
+  );
 };
 
 export default Form;

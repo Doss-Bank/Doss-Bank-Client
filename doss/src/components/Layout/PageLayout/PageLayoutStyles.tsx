@@ -5,5 +5,4 @@ export const PageMain = styled.main`
   padding: 6rem 0;
   margin: 0 auto;
   max-width: 1200px;
-  height: 1200px;
 `;

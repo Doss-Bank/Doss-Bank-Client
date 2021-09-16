@@ -6,7 +6,6 @@ export const JoinPageLayout = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #e2e4e6;
   min-height: 100vh;
   flex-direction: column;
   img {
@@ -14,5 +13,13 @@ export const JoinPageLayout = styled.main`
   }
   & > form {
     width: 600px;
+  }
+  .title {
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    @media (max-width: 768px) {
+      font-size: 38px;
+    }
   }
 `;

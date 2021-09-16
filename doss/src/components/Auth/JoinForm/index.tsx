@@ -1,132 +1,89 @@
-import Button from "components/Common/Button";
 import Form from "components/Common/Form";
 import Input from "components/Common/Input";
 import useInput from "hooks/useInput";
-import Caption from "components/Common/Caption";
-import { StyledJoinSection } from "./JoinFormStyle";
-import { useCallback, useEffect, useState } from "react";
-import joinValidator from "utils/joinValidator";
-import { joinRecoilState } from "recoils/Auth/AuthState";
-import { useRecoilState } from "recoil";
-import { useHistory } from "react-router-dom";
+import { useCallback, useEffect, useRef } from "react";
+import { SocialSection } from "./JoinFormStyle";
+import ProfileSetting from "./ProfileSetting";
 
-const JoinForm = () => {
-  const { push } = useHistory();
+const JoinForm: React.VFC = () => {
+  const afterSocialRef = useRef<HTMLInputElement>(null);
 
-  const [joinState, setJoinState] = useRecoilState(joinRecoilState);
-
-  //아이디,비번,닉네임,폰번호,생일
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useInput("");
-  const [checkPassword, onChangeCheckPassword] = useInput("");
+  const [email, onChangeEmail] = useInput("");
+  const [beforeSocialNumber, onChangeBeforeSocialNumber] = useInput("");
+  const [afterSocialNumber, onChangeAfterSocialNumber] = useInput("");
+  const [name, onChangeName] = useInput("");
   const [nickname, onChangeNickname] = useInput("");
-  const [phoneNumber, _, setPhoneNumber] = useInput("");
-  const [birth, onChangeBirth] = useInput("");
 
-  const onChangePhoneNumber = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const re = /^[0-9\b]+$/;
+  const handleSubmit = useCallback(() => {
+    //!TODO Login Data HTTP connection
+  }, []);
 
-      if (event.target.value === "" || re.test(event.target.value)) {
-        setPhoneNumber(event.target.value);
+  useEffect(() => {
+    if (beforeSocialNumber.length === 6) {
+      if (afterSocialRef.current) {
+        afterSocialRef.current.focus();
       }
-    },
-    [setPhoneNumber]
-  );
-
-  const [hasValidateError, setHasValidateError] = useState<string | null>("");
-
-  const handleJoinSubmit = useCallback(() => {
-    const joinData = {
-      id,
-      password,
-      checkPassword,
-      nickname,
-      phoneNumber,
-      birth,
-    };
-
-    const errorMessage = joinValidator(joinData);
-    setHasValidateError(errorMessage);
-  }, [id, password, checkPassword, nickname, phoneNumber, birth]);
-
-  useEffect(() => {
-    if (hasValidateError === null) {
-      setJoinState({ joinDone: true });
     }
-  }, [hasValidateError, setJoinState]);
-
-  useEffect(() => {
-    if (joinState.joinDone) {
-      push("/");
-    }
-  }, [joinState, push]);
+  }, [beforeSocialNumber]);
 
   return (
-    <Form onSubmit={handleJoinSubmit}>
-      <StyledJoinSection>
+    <Form hasSubmit submitText="회원가입" onSubmit={handleSubmit}>
+      <ProfileSetting name={name} />
+      <Input
+        placeholder="아이디를 입력해주세요."
+        value={id}
+        onChange={onChangeId}
+        overlabHandler={() => {}}
+      />
+      <Input
+        placeholder="비밀번호를 입력해주세요."
+        value={password}
+        onChange={onChangePassword}
+      />
+      <Input
+        placeholder="이메일을 입력해주세요. (example@mail.com)"
+        value={email}
+        onChange={onChangeEmail}
+        overlabHandler={() => {}}
+      />
+      <SocialSection>
         <Input
-          inputTitle="아이디"
-          placeholder="아이디를 입력해주세요."
-          inputId="1"
-          value={id}
-          onChange={onChangeId}
+          type="text"
+          maxLength={6}
+          className="social_before"
+          value={beforeSocialNumber}
+          onChange={onChangeBeforeSocialNumber}
+          placeholder="주민번호 앞 6자리 + 뒷 1자리"
         />
-      </StyledJoinSection>
-      <StyledJoinSection>
+        <div className="hyphen">-</div>
         <Input
-          inputTitle="비밀번호"
-          placeholder="비밀번호를 입력해주세요."
-          inputId="2"
-          value={password}
-          onChange={onChangePassword}
-          type="password"
+          inputRef={afterSocialRef}
+          type="text"
+          maxLength={1}
+          className="social_after"
+          value={afterSocialNumber}
+          onChange={onChangeAfterSocialNumber}
         />
-        <Input
-          inputTitle="비밀번호 재입력"
-          placeholder="비밀번호를 다시 입력해주세요."
-          inputId="3"
-          value={checkPassword}
-          onChange={onChangeCheckPassword}
-          type="password"
-        />
-      </StyledJoinSection>
-      <StyledJoinSection>
-        <Input
-          inputTitle="닉네임"
-          placeholder="닉네임을 입력해주세요."
-          inputId="4"
-          value={nickname}
-          onChange={onChangeNickname}
-        />
-      </StyledJoinSection>
-      <StyledJoinSection>
-        <Input
-          inputTitle="폰 번호"
-          placeholder="폰 번호를 입력해주세요."
-          inputId="5"
-          value={phoneNumber}
-          onChange={onChangePhoneNumber}
-        />
-      </StyledJoinSection>
-      <StyledJoinSection>
-        <Input
-          inputTitle="생일"
-          placeholder="생일을 입력해주세요."
-          inputId="6"
-          value={birth}
-          onChange={onChangeBirth}
-          type="date"
-        />
-      </StyledJoinSection>
-      {hasValidateError && (
-        <StyledJoinSection>
-          <Caption title="인증 오류" type="ERROR">
-            <div className="caption_error">{hasValidateError}</div>
-          </Caption>
-        </StyledJoinSection>
-      )}
-      <Button>회원가입</Button>
+        {Array(7)
+          .fill("·")
+          .map((dot, index) => (
+            <div className="dot" key={index}>
+              {dot}
+            </div>
+          ))}
+      </SocialSection>
+      <Input
+        placeholder="이름을 입력해주세요."
+        value={name}
+        onChange={onChangeName}
+      />
+      <Input
+        placeholder="별명을 입력해주세요."
+        value={nickname}
+        onChange={onChangeNickname}
+      />
     </Form>
   );
 };
