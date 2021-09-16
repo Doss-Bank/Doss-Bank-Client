@@ -20,7 +20,7 @@ const ProfileSetting: VFC<ProfileSettingProps> = ({ name }) => {
       const input = event.target as HTMLInputElement;
 
       if (input!.files) {
-        console.log(input!.files[0]);
+        alert(input!.files[0].name);
       }
     },
     []

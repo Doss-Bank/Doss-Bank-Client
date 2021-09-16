@@ -10,6 +10,7 @@ const JoinForm: React.VFC = () => {
 
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useInput("");
+  const [checkPassword, onChangeCheckPassword] = useInput("");
   const [email, onChangeEmail] = useInput("");
   const [beforeSocialNumber, onChangeBeforeSocialNumber] = useInput("");
   const [afterSocialNumber, onChangeAfterSocialNumber] = useInput("");
@@ -17,8 +18,23 @@ const JoinForm: React.VFC = () => {
   const [nickname, onChangeNickname] = useInput("");
 
   const handleSubmit = useCallback(() => {
-    //!TODO Login Data HTTP connection
-  }, []);
+    const joinData = {
+      id,
+      password,
+      checkPassword,
+      name,
+      nickname,
+      socialNumber: beforeSocialNumber + afterSocialNumber,
+    };
+  }, [
+    afterSocialNumber,
+    beforeSocialNumber,
+    id,
+    name,
+    nickname,
+    password,
+    checkPassword,
+  ]);
 
   useEffect(() => {
     if (beforeSocialNumber.length === 6) {
@@ -41,6 +57,11 @@ const JoinForm: React.VFC = () => {
         placeholder="비밀번호를 입력해주세요."
         value={password}
         onChange={onChangePassword}
+      />
+      <Input
+        placeholder="비밀번호를 다시 입력해주세요."
+        value={checkPassword}
+        onChange={onChangeCheckPassword}
       />
       <Input
         placeholder="이메일을 입력해주세요. (example@mail.com)"

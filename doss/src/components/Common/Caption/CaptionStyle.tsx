@@ -4,7 +4,7 @@ interface CaptionInterfaces {
   captionType: "ERROR" | "NORMAL";
 }
 
-export const StyledCaption = styled.caption<CaptionInterfaces>`
+export const StyledCaption = styled.div<CaptionInterfaces>`
   width: 100%;
   display: flex;
   flex-direction: column;

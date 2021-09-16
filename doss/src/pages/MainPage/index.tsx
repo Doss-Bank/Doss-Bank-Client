@@ -2,15 +2,26 @@ import { Helmet } from "react-helmet";
 import { loginRecoilState } from "recoils/Auth/AuthState";
 import { useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PageLayout from "components/Layout/PageLayout";
 import ProfileCard from "components/Main/ProfileCard";
 import AccountCard from "components/Main/AccountCard";
+import Confetti from "react-confetti";
 
 function MainPage() {
   const { push } = useHistory();
 
+  const [loginEffect, setLoginEffect] = useState(true);
+
   const loginState = useRecoilValue(loginRecoilState);
+
+  useEffect(() => {
+    const effectTimer = setTimeout(() => {
+      setLoginEffect(false);
+    }, 6000);
+
+    return () => clearTimeout(effectTimer);
+  }, [setLoginEffect]);
 
   useEffect(() => {
     if (!loginState.loginDone) {
@@ -20,6 +31,7 @@ function MainPage() {
 
   return (
     <>
+      <Confetti recycle={false} />
       <Helmet title="도스 - 개발이 즐거워지는 순간" />
       <PageLayout>
         <ProfileCard />
