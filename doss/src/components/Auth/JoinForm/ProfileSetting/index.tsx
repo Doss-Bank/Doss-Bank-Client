@@ -1,4 +1,4 @@
-import { useCallback, useRef, VFC } from "react";
+import { useCallback, useRef, useState, VFC } from "react";
 import DefaultProfile from "assets/images/profile_default.png";
 import { ProfileSettingContainer } from "./ProfileSettingStyles";
 
@@ -7,7 +7,8 @@ interface ProfileSettingProps {
 }
 
 const ProfileSetting: VFC<ProfileSettingProps> = ({ name }) => {
-  const profileRef = useRef<HTMLInputElement>(null);
+  const [profileImage, setProfileImage] = useState(DefaultProfile);
+  const profileRef = useRef<HTMLInputElement | null>(null);
 
   const handleClickChangeProfile = useCallback(() => {
     if (profileRef.current) {
@@ -20,7 +21,7 @@ const ProfileSetting: VFC<ProfileSettingProps> = ({ name }) => {
       const input = event.target as HTMLInputElement;
 
       if (input!.files) {
-        alert(input!.files[0].name);
+        setProfileImage(URL.createObjectURL(input!.files[0]));
       }
     },
     []
@@ -28,7 +29,7 @@ const ProfileSetting: VFC<ProfileSettingProps> = ({ name }) => {
 
   return (
     <ProfileSettingContainer>
-      <img src={DefaultProfile} alt="" className="profile" />
+      <img src={profileImage} alt="" className="profile" />
       {name.trim() ? `${name}님 반가워요` : "당신의 이름은 무엇인가요?"}
       <input
         type="file"

@@ -8,6 +8,7 @@ import loginValidator from "utils/loginValidator";
 import useInput from "hooks/useInput";
 import { useRecoilState } from "recoil";
 import { loginRecoilState } from "recoils/Auth/AuthState";
+import axios from "axios";
 
 const LoginForm: VFC = () => {
   const { push } = useHistory();
@@ -17,8 +18,11 @@ const LoginForm: VFC = () => {
   const [loginState, setLoginState] = useRecoilState(loginRecoilState);
 
   const handleSubmit = useCallback(() => {
-    if (loginValidator({ id, password })) {
+    const loginData = { id, password };
+    if (loginValidator(loginData)) {
       //TODO: LOGIN REQUEST
+      axios.post("/user/login", loginData).then((response) => {});
+
       setLoginState({ loginDone: true });
     }
   }, [id, password, setLoginState]);

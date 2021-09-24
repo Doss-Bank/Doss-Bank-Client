@@ -25,7 +25,7 @@ export const StyledInput = styled.input`
   font-weight: bold;
   transition: ease-in-out 0.2s;
   &:focus {
-    border: 1px solid blue;
+    border: 1px solid #3182f6;
   }
   &::placeholder {
     font-weight: lighter;
