@@ -9,6 +9,7 @@ import useInput from "hooks/useInput";
 import { useRecoilState } from "recoil";
 import { loginRecoilState } from "recoils/Auth/AuthState";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const LoginForm: VFC = () => {
   const { push } = useHistory();
@@ -18,12 +19,21 @@ const LoginForm: VFC = () => {
   const [loginState, setLoginState] = useRecoilState(loginRecoilState);
 
   const handleSubmit = useCallback(() => {
-    const loginData = { id, password };
+    const loginData = { id, pw: password };
+
     if (loginValidator(loginData)) {
       //TODO: LOGIN REQUEST
-      axios.post("/user/login", loginData).then((response) => {});
-
-      setLoginState({ loginDone: true });
+      axios
+        .post("/user/login", loginData)
+        .then((response) => {
+          setLoginState({ loginDone: true });
+          toast.success("성공");
+        })
+        .catch((error) => {
+          toast.error("오류");
+        });
+    } else {
+      toast.error("로그인 양식이 잘못되었습니다.");
     }
   }, [id, password, setLoginState]);
 

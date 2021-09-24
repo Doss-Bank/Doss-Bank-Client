@@ -1,10 +1,10 @@
 interface LoginInterfaces {
   id: string;
-  password: string;
+  pw: string;
 }
 
-const loginValidator = ({ id, password }: LoginInterfaces) => {
-  if (!id.trim() || !password.trim()) {
+const loginValidator = ({ id, pw }: LoginInterfaces) => {
+  if (!id.trim() || !pw.trim()) {
     return false;
   }
   return true;

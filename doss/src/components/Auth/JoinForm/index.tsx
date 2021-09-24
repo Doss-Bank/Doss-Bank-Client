@@ -1,13 +1,15 @@
 import Form from "components/Common/Form";
 import Input from "components/Common/Input";
 import useInput from "hooks/useInput";
-import { useCallback, useEffect, useRef } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { SocialSection } from "./JoinFormStyle";
 import ProfileSetting from "./ProfileSetting";
+import DefaultProfile from "assets/images/profile_default.png";
 
-const JoinForm: React.VFC = () => {
+const JoinForm: React.VFC = memo(() => {
   const afterSocialRef = useRef<HTMLInputElement>(null);
 
+  const [profileImage, setProfileImage] = useState(DefaultProfile);
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useInput("");
   const [checkPassword, onChangeCheckPassword] = useInput("");
@@ -19,6 +21,7 @@ const JoinForm: React.VFC = () => {
 
   const handleSubmit = useCallback(() => {
     const joinData = {
+      profileImage,
       id,
       password,
       checkPassword,
@@ -27,6 +30,7 @@ const JoinForm: React.VFC = () => {
       socialNumber: beforeSocialNumber + afterSocialNumber,
     };
   }, [
+    profileImage,
     afterSocialNumber,
     beforeSocialNumber,
     id,
@@ -46,7 +50,11 @@ const JoinForm: React.VFC = () => {
 
   return (
     <Form hasSubmit submitText="회원가입" onSubmit={handleSubmit}>
-      <ProfileSetting name={name} />
+      <ProfileSetting
+        name={name}
+        profileImage={profileImage}
+        setProfileImage={setProfileImage}
+      />
       <Input
         placeholder="아이디를 입력해주세요."
         value={id}
@@ -107,6 +115,5 @@ const JoinForm: React.VFC = () => {
       />
     </Form>
   );
-};
-
+});
 export default JoinForm;

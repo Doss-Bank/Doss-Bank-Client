@@ -1,13 +1,18 @@
-import { useCallback, useRef, useState, VFC } from "react";
-import DefaultProfile from "assets/images/profile_default.png";
+import { useCallback, useRef, memo, VFC } from "react";
+
 import { ProfileSettingContainer } from "./ProfileSettingStyles";
 
 interface ProfileSettingProps {
   name: string;
+  profileImage: string;
+  setProfileImage: (imageURL: string) => void;
 }
 
-const ProfileSetting: VFC<ProfileSettingProps> = ({ name }) => {
-  const [profileImage, setProfileImage] = useState(DefaultProfile);
+const ProfileSetting: VFC<ProfileSettingProps> = ({
+  name,
+  profileImage,
+  setProfileImage,
+}) => {
   const profileRef = useRef<HTMLInputElement | null>(null);
 
   const handleClickChangeProfile = useCallback(() => {
@@ -24,7 +29,7 @@ const ProfileSetting: VFC<ProfileSettingProps> = ({ name }) => {
         setProfileImage(URL.createObjectURL(input!.files[0]));
       }
     },
-    []
+    [setProfileImage]
   );
 
   return (
@@ -44,4 +49,4 @@ const ProfileSetting: VFC<ProfileSettingProps> = ({ name }) => {
   );
 };
 
-export default ProfileSetting;
+export default memo(ProfileSetting);
