@@ -10,6 +10,7 @@ import { useRecoilState } from "recoil";
 import { loginRecoilState } from "recoils/Auth/AuthState";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Token from "utils/token";
 
 const LoginForm: VFC = () => {
   const { push } = useHistory();
@@ -26,8 +27,10 @@ const LoginForm: VFC = () => {
       axios
         .post("/user/login", loginData)
         .then((response) => {
+          const { token } = response.data;
+          Token.setToken(token);
           setLoginState({ loginDone: true });
-          toast.success("성공");
+          toast.success("환영합니다.");
         })
         .catch((error) => {
           toast.error("오류");

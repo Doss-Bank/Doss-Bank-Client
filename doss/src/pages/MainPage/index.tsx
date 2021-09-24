@@ -2,16 +2,21 @@ import { Helmet } from "react-helmet";
 import { loginRecoilState } from "recoils/Auth/AuthState";
 import { useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import PageLayout from "components/Layout/PageLayout";
 import ProfileCard from "components/Main/ProfileCard";
 import AccountCard from "components/Main/AccountCard";
-import Confetti from "react-confetti";
+import axios from "axios";
+import Token from "utils/token";
 
 function MainPage() {
   const { push } = useHistory();
 
   const loginState = useRecoilValue(loginRecoilState);
+
+  useEffect(() => {
+    axios.get("/user");
+  }, []);
 
   useEffect(() => {
     if (!loginState.loginDone) {

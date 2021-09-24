@@ -8,6 +8,7 @@ import { useRecoilState } from "recoil";
 import { loginRecoilState } from "recoils/Auth/AuthState";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import Token from "utils/token";
 
 function WelcomePage() {
   const { push } = useHistory();
@@ -16,11 +17,16 @@ function WelcomePage() {
   const [ModalVisible, , openModal, closeModal] = useToggle(false);
 
   useEffect(() => {
+    const token = Token.getToken();
+    if (token) {
+      setLoginState({ loginDone: true });
+    }
+
     if (loginState.loginDone) {
       push("/");
     }
-  }, [loginState, push]);
-  console.log(loginState.loginDone);
+  }, [loginState, push, setLoginState]);
+
   return (
     <>
       <WelcomePageContainer>
